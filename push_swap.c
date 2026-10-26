@@ -6,7 +6,7 @@
 /*   By: spuschma <spuschma@student.42vienna.com>  #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/10/26 17:53:16 by spuschma         #+#    #+#              */
-/*   Updated: 2026/10/26 22:40:28 by spuschma        ###   ########.fr        */
+/*   Updated: 2026/10/26 23:19:26 by spuschma        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft/libft.h"
@@ -93,28 +93,41 @@ t_stack_collection	*init_stacks(int argc, char **argv, char **flag)
 	return (s);
 }
 
-// flags:
-// 0bX00 = adaptive
-// 0bX01 = simple
-// 0bX10 = medium
-// 0bX11 = complex
-// 0b1XX = benchmark mode
+int	ft_strcmp(const char *s1, const char *s2)
+{
+	size_t	i;
+
+	i = -1;
+	while (s1[++i] && s1[i] == s2[i])
+		;
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+}
+
+typedef enum e_flag
+{
+	F_ADAPT = 0b00001,
+	F_SIMPL = 0b00010,
+	F_MEDIU = 0b00100,
+	F_COMPL = 0b01000,
+	F_BENCH = 0b10000,
+}					t_flag;
+
 char	get_numbers(int argc, char **argv, int *numbers)
 {
 	int		i;
 	char	flags;
 
-	exit_if(argc < 2, NULL, "Provide a list of integers to sort!");
 	flags = 0;
 	i = 1;
 	while (i < 3 && i < argc && argv[i][0] == '-' && argv[i][1] == '-')
 	{
-		flags += 0b100 * (ft_strncmp(argv[i], "--bench", 8) == 0);
-		flags |= 0b001 * (ft_strncmp(argv[i], "--simple", 9) == 0);
-		flags |= 0b010 * (ft_strncmp(argv[i], "--medium", 9) == 0);
-		flags |= 0b011 * (ft_strncmp(argv[i], "--complex", 10) == 0);
-		exit_if(i == 2 && (flags < 0b100 || flags > 0b111), NULL, "Flag Err");
-		exit_if(!flags && ft_strncmp(argv[i], "--adaptive", 11), 0, "Flag Err");
+		flags ^= F_ADAPT * (ft_strcmp(argv[i], "--adaptive") == 0);
+		flags ^= F_SIMPL * (ft_strcmp(argv[i], "--simple") == 0);
+		flags ^= F_MEDIU * (ft_strcmp(argv[i], "--medium") == 0);
+		flags ^= F_COMPL * (ft_strcmp(argv[i], "--complex") == 0);
+		flags ^= F_BENCH * (ft_strcmp(argv[i], "--bench") == 0);
+		if (!flags || (i > 1 && (!(flags & (flags - 1)) || !(flags & F_BENCH))))
+			exit((ft_putendl_fd("Flag Error!", 2), 1));
 		i++;
 	}
 	return (flags);
