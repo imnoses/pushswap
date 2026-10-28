@@ -6,12 +6,11 @@
 /*   By: spuschma <spuschma@student.42vienna.com>  #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/10/26 17:53:16 by spuschma         #+#    #+#              */
-/*   Updated: 2026/10/26 23:19:26 by spuschma        ###   ########.fr        */
+/*   Updated: 2026/10/27 16:19:20 by spuschma        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft/libft.h"
 #include <stddef.h>
-#include <stdio.h>
 #include <stdlib.h>
 
 typedef struct s_stack
@@ -112,10 +111,27 @@ typedef enum e_flag
 	F_BENCH = 0b10000,
 }					t_flag;
 
+size_t	count_numbers(int count, char **l)
+{
+	int		i;
+	size_t	r;
+
+	r = 0;
+	while (count-- && l++)
+	{
+		i = -1;
+		while (*l[i])
+			r += (*l[i] >= '0' && *l[i] <= '9' && ((*l[++i] >= '\t'
+							&& *l[i] <= '\f') || *l[i] == ' ' || !*l[i]));
+	}
+	return (r);
+}
+
 char	get_numbers(int argc, char **argv, int *numbers)
 {
 	int		i;
 	char	flags;
+	int		n;
 
 	flags = 0;
 	i = 1;
@@ -130,6 +146,7 @@ char	get_numbers(int argc, char **argv, int *numbers)
 			exit((ft_putendl_fd("Flag Error!", 2), 1));
 		i++;
 	}
+	n = count_numbers(argc - i, argv + i);
 	return (flags);
 }
 
