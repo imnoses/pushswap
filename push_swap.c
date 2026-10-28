@@ -6,7 +6,7 @@
 /*   By: spuschma <spuschma@student.42vienna.com>  #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/10/26 17:53:16 by spuschma         #+#    #+#              */
-/*   Updated: 2026/10/28 14:56:43 by spuschma        ###   ########.fr        */
+/*   Updated: 2026/10/28 16:30:56 by spuschma        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft/libft.h"
@@ -76,31 +76,33 @@ int	get_flags(int argc, char **argv, char *flags)
 	return (i);
 }
 
-char	pars_args(int argc, char **argv, int **numbers, int *size)
+// j just has to be set to 0. Im sorry but I needed the line!!
+t_stack_collection	*pars_args(int argc, char **argv, char *flags, int j)
 {
 	int		i;
-	int		j;
 	int		k;
-	char	**number_strs;
-	char	flags;
+	char	**num_strs;
+	int		*nums;
 
-	i = get_flags(argc, argv, &flags);
-	numbers = malloc(count_dooku(argc - i, argv + i) * sizeof(int));
-	j = 0;
+	i = get_flags(argc, argv, flags);
+	nums = malloc(count_dooku(argc - i, argv + i) * sizeof(int));
+	if (!nums)
+		exit((ft_putendl_fd("Malloc Failed!", 2), 1));
 	while (i < argc)
 	{
-		number_strs = splitws(argv[i++]);
+		num_strs = splitws(argv[i++]);
 		k = -1;
-		while (number_strs[++k])
+		while (num_strs[++k])
 		{
-			numbers[0][j++] = error_throwing_atoi(number_strs[k],
-					"One of the numbers is malformed!");
-			free(number_strs[k]);
+			if (!status_atoi(num_strs[k], nums + j++))
+				*flags = 0x7F;
+			free(num_strs[k]);
 		}
-		free(number_strs);
+		free(num_strs);
 	}
-	*size = j;
-	return (flags);
+	if (*flags == 0x7F)
+		exit((ft_putendl_fd("Malloc Failed!", 2), free(nums), 1));
+	return (init_stacks(nums, j));
 }
 
 int	main(int argc, char **argv)
@@ -110,8 +112,5 @@ int	main(int argc, char **argv)
 	int					*numbers;
 	int					size;
 
-	if (argc < 2)
-		return (ft_putendl_fd("Provide a list of integers to sort!", 1), 1);
-	flags = pars_args(argc, argv, &numbers, &size);
-	s = init_stacks(numbers, size);
+	s = pars_args(argc, argv, &flags, 0);
 }

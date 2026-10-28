@@ -6,12 +6,13 @@
 /*   By: spuschma <spuschma@student.42vienna.com>  #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/10/28 14:53:03 by spuschma         #+#    #+#              */
-/*   Updated: 2026/10/28 14:55:18 by spuschma        ###   ########.fr        */
+/*   Updated: 2026/10/28 15:43:58 by spuschma        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include "push_swap.h"
+#include <limits.h>
 #include <stdlib.h>
 
 int	ft_isws(char c)
@@ -20,12 +21,12 @@ int	ft_isws(char c)
 }
 
 // Exits with error message on fail
-int	error_throwing_atoi(const char *nptr, char *error_message)
+char	status_atoi(const char *nptr, int *result)
 {
-	int	sign;
-	int	result;
+	int		sign;
+	long	l_res;
 
-	result = 0;
+	l_res = 0;
 	sign = 1;
 	while (ft_isws(*nptr))
 		nptr++;
@@ -35,15 +36,18 @@ int	error_throwing_atoi(const char *nptr, char *error_message)
 			sign = -1;
 		nptr++;
 	}
+	if (!*nptr)
+		return (1);
 	while (ft_isdigit(*nptr))
 	{
-		result = (result * 10) + *nptr - '0';
+		l_res = (l_res * 10) + *nptr - '0';
 		nptr++;
+		if (l_res * sign > INT_MAX || l_res * sign < INT_MIN)
+			return (1);
 	}
-	if (!*nptr)
-		return (result * sign);
-	ft_putendl_fd(error_message, 2);
-	exit(1);
+	if (*nptr)
+		return (1);
+	*result = l_res * sign;
 }
 
 int	ft_strcmp(const char *s1, const char *s2)

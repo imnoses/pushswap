@@ -6,7 +6,7 @@
 /*   By: spuschma <spuschma@student.42vienna.com>  #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/10/28 14:15:29 by spuschma         #+#    #+#              */
-/*   Updated: 2026/10/28 14:56:38 by spuschma        ###   ########.fr        */
+/*   Updated: 2026/10/28 15:51:57 by spuschma        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ typedef enum e_flag
 
 int			ft_isws(char c);
 
-int			error_throwing_atoi(const char *nptr, char *error_message);
+char		status_atoi(const char *nptr, int *result);
 
 int			ft_strcmp(const char *s1, const char *s2);
 
