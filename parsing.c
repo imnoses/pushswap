@@ -6,7 +6,7 @@
 /*   By: spuschma <spuschma@student.42vienna.com>  #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/10/28 17:06:36 by spuschma         #+#    #+#              */
-/*   Updated: 2026/10/28 17:20:34 by spuschma        ###   ########.fr        */
+/*   Updated: 2026/10/28 17:23:42 by spuschma        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-static t_data	*init_stacks(int *numbers, int size)
+static t_data	*init_stacks(int *numbers, int n, t_flags flags)
 {
 	int		i;
 	t_data	*s;
@@ -23,11 +23,13 @@ static t_data	*init_stacks(int *numbers, int size)
 	s = ft_calloc(1, sizeof(t_data));
 	if (!s)
 		exit(1);
-	s->a.size = size;
-	s->a.cap = size;
-	s->b.cap = size;
+	s->n = n;
+	s->flags = flags;
+	s->a.size = n;
+	s->a.cap = n;
+	s->b.cap = n;
 	s->a.arr = numbers;
-	s->b.arr = malloc(size * sizeof(int));
+	s->b.arr = malloc(n * sizeof(int));
 	exit_if(!s->a.arr || !s->b.arr, s, "Malloc failed!");
 	exit_if(s->a.size < 1, s, "You must provide integers to sort!");
 	return (s);
