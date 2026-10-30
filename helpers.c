@@ -6,7 +6,7 @@
 /*   By: spuschma <spuschma@student.42vienna.com>  #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/10/28 14:53:03 by spuschma         #+#    #+#              */
-/*   Updated: 2026/10/28 15:43:58 by spuschma        ###   ########.fr        */
+/*   Updated: 2026/10/28 17:19:47 by spuschma        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	ft_isws(char c)
 	return ((c >= '\t' && c <= '\r') || c == ' ');
 }
 
-// Exits with error message on fail
+// Returns 0 on fail
 char	status_atoi(const char *nptr, int *result)
 {
 	int		sign;
@@ -31,23 +31,21 @@ char	status_atoi(const char *nptr, int *result)
 	while (ft_isws(*nptr))
 		nptr++;
 	if (*nptr == '+' || *nptr == '-')
-	{
-		if (*nptr == '-')
+		if (*(nptr++) == '-')
 			sign = -1;
-		nptr++;
-	}
 	if (!*nptr)
-		return (1);
+		return (0);
 	while (ft_isdigit(*nptr))
 	{
 		l_res = (l_res * 10) + *nptr - '0';
 		nptr++;
 		if (l_res * sign > INT_MAX || l_res * sign < INT_MIN)
-			return (1);
+			return (0);
 	}
 	if (*nptr)
-		return (1);
+		return (0);
 	*result = l_res * sign;
+	return (1);
 }
 
 int	ft_strcmp(const char *s1, const char *s2)
@@ -60,7 +58,7 @@ int	ft_strcmp(const char *s1, const char *s2)
 	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }
 
-void	exit_if(int condition, t_stack_collection *s, char *message)
+void	exit_if(int condition, t_data *s, char *message)
 {
 	if (!condition)
 		return ;

@@ -6,7 +6,7 @@
 /*   By: spuschma <spuschma@student.42vienna.com>  #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/10/28 17:06:36 by spuschma         #+#    #+#              */
-/*   Updated: 2026/10/28 17:08:39 by spuschma        ###   ########.fr        */
+/*   Updated: 2026/10/28 17:20:34 by spuschma        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-static t_stack_collection	*init_stacks(int *numbers, int size)
+static t_data	*init_stacks(int *numbers, int size)
 {
-	int					i;
-	t_stack_collection	*s;
+	int		i;
+	t_data	*s;
 
-	s = ft_calloc(1, sizeof(t_stack_collection));
+	s = ft_calloc(1, sizeof(t_data));
 	if (!s)
 		exit(1);
 	s->a.size = size;
@@ -55,7 +55,7 @@ static size_t	count_dooku(int n, char **list)
 }
 
 // returns the offset to the first argument after the flags
-static int	get_flags(int argc, char **argv, char *flags)
+static int	get_flags(int argc, char **argv, t_flags *flags)
 {
 	int	i;
 
@@ -93,7 +93,7 @@ static int	fill_array(int argc, char **argv, int *nums)
 		k = -1;
 		while (num_strs[++k])
 		{
-			err |= status_atoi(num_strs[k], nums + j++);
+			err |= !status_atoi(num_strs[k], nums + j++);
 			free(num_strs[k]);
 		}
 		free(num_strs);
@@ -103,7 +103,7 @@ static int	fill_array(int argc, char **argv, int *nums)
 	return (j);
 }
 
-t_stack_collection	*pars_args(int argc, char **argv, char *flags)
+t_data	*pars_args(int argc, char **argv, t_flags *flags)
 {
 	int		offset;
 	char	**num_strs;
