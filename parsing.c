@@ -118,5 +118,7 @@ t_data	*pars_args(int argc, char **argv, t_flags *flags)
 		exit((ft_putendl_fd("Error", 2), 1));
 	if (!fill_array(argc - offset, argv + offset, nums))
 		exit((ft_putendl_fd("Error", 2), free(nums), 1));
+	if (!index_array(nums, n))
+		exit((ft_putendl_fd("Error", 2), free(nums), 1));
 	return (init_stacks(nums, n));
 }

@@ -71,3 +71,30 @@ void	exit_if(int condition, t_data *s)
 	}
 	exit(1);
 }
+
+int	index_array(int *arr, size_t size)
+{
+	int		*rank;
+	size_t	i;
+	size_t	j;
+
+	rank = ft_calloc(size, sizeof(int));
+	if (!rank)
+		return (0);
+	i = -1;
+	while (++i < size)
+	{
+		j = -1;
+		while (++j < size)
+		{
+			if (j != i && arr[j] == arr[i])
+				return (free(rank), 0);
+			if (arr[j < arr[i]])
+				rank[i]++;
+		}
+	}
+	i = -1;
+	while (++i < size)
+		arr[i] = rank[i];
+	return (free(rank), 1);
+}
