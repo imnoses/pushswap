@@ -6,7 +6,7 @@
 /*   By: spuschma <spuschma@student.42vienna.com>  #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/10/28 14:53:03 by spuschma         #+#    #+#              */
-/*   Updated: 2026/10/28 17:19:47 by spuschma        ###   ########.fr        */
+/*   Updated: 2026/11/14 21:04:26 by spuschma        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,11 @@ int	ft_strcmp(const char *s1, const char *s2)
 	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }
 
-void	exit_if(int condition, t_data *s, char *message)
+void	exit_if(int condition, t_data *s)
 {
 	if (!condition)
 		return ;
-	if (message)
-		ft_putendl_fd(message, 2);
+	ft_putendl_fd("Error", 2);
 	if (s)
 	{
 		free(s->a.arr);

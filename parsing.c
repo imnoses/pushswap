@@ -6,7 +6,7 @@
 /*   By: spuschma <spuschma@student.42vienna.com>  #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/10/28 17:06:36 by spuschma         #+#    #+#              */
-/*   Updated: 2026/10/28 17:23:42 by spuschma        ###   ########.fr        */
+/*   Updated: 2026/11/14 21:07:07 by spuschma        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static t_data	*init_stacks(int *numbers, int n, t_flags flags)
 
 	s = ft_calloc(1, sizeof(t_data));
 	if (!s)
-		exit(1);
+		exit(ft_putendl_fd("Error", 2), 1);
 	s->n = n;
 	s->flags = flags;
 	s->a.size = n;
@@ -30,8 +30,7 @@ static t_data	*init_stacks(int *numbers, int n, t_flags flags)
 	s->b.cap = n;
 	s->a.arr = numbers;
 	s->b.arr = malloc(n * sizeof(int));
-	exit_if(!s->a.arr || !s->b.arr, s, "Malloc failed!");
-	exit_if(s->a.size < 1, s, "You must provide integers to sort!");
+	exit_if(!s->a.arr || !s->b.arr || s->a.size < 1, s);
 	return (s);
 }
 
@@ -72,7 +71,7 @@ static int	get_flags(int argc, char **argv, t_flags *flags)
 		*flags ^= F_BENCH * (ft_strcmp(argv[i], "--bench") == 0);
 		if (!*flags || (i > 1 && (!(*flags & (*flags - 1))
 					|| !(*flags & F_BENCH))))
-			exit((ft_putendl_fd("Flag Error!", 2), 1));
+			exit((ft_putendl_fd("Error", 2), 1));
 		i++;
 	}
 	return (i);
@@ -116,8 +115,8 @@ t_data	*pars_args(int argc, char **argv, t_flags *flags)
 	n = count_dooku(argc - offset, argv + offset);
 	nums = malloc(n * sizeof(int));
 	if (!nums)
-		exit((ft_putendl_fd("Malloc Failed!", 2), 1));
+		exit((ft_putendl_fd("Error", 2), 1));
 	if (!fill_array(argc - offset, argv + offset, nums))
-		exit((ft_putendl_fd("Malloc Failed!", 2), free(nums), 1));
+		exit((ft_putendl_fd("Error", 2), free(nums), 1));
 	return (init_stacks(nums, n));
 }
