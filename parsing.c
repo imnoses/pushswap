@@ -6,7 +6,7 @@
 /*   By: spuschma <spuschma@student.42vienna.com>  #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/10/28 17:06:36 by spuschma         #+#    #+#              */
-/*   Updated: 2026/11/14 21:07:07 by spuschma        ###   ########.fr        */
+/*   Updated: 2026/11/14 21:16:33 by spuschma        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static t_data	*init_stacks(int *numbers, int n, t_flags flags)
 
 	s = ft_calloc(1, sizeof(t_data));
 	if (!s)
-		exit(ft_putendl_fd("Error", 2), 1);
+		exit((ft_putendl_fd("Error", 2), 1));
 	s->n = n;
 	s->flags = flags;
 	s->a.size = n;
@@ -104,14 +104,15 @@ static int	fill_array(int argc, char **argv, int *nums)
 	return (j);
 }
 
-t_data	*pars_args(int argc, char **argv, t_flags *flags)
+t_data	*pars_args(int argc, char **argv)
 {
 	int		offset;
 	char	**num_strs;
 	int		*nums;
 	int		n;
+	t_flags	flags;
 
-	offset = get_flags(argc, argv, flags);
+	offset = get_flags(argc, argv, &flags);
 	n = count_dooku(argc - offset, argv + offset);
 	nums = malloc(n * sizeof(int));
 	if (!nums)
@@ -120,5 +121,5 @@ t_data	*pars_args(int argc, char **argv, t_flags *flags)
 		exit((ft_putendl_fd("Error", 2), free(nums), 1));
 	if (!index_array(nums, n))
 		exit((ft_putendl_fd("Error", 2), free(nums), 1));
-	return (init_stacks(nums, n));
+	return (init_stacks(nums, n, flags));
 }
