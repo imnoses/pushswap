@@ -6,7 +6,7 @@
 /*   By: spuschma <spuschma@student.42vienna.com>  #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/10/28 14:15:29 by spuschma         #+#    #+#              */
-/*   Updated: 2026/10/28 17:15:53 by spuschma        ###   ########.fr        */
+/*   Updated: 2026/11/14 21:22:50 by spuschma        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,12 @@ char		status_atoi(const char *nptr, int *result);
 
 int			ft_strcmp(const char *s1, const char *s2);
 
-void		exit_if(int condition, t_data *s, char *message);
+void		exit_if(int condition, t_data *s);
 
 char		**splitws(char const *s);
 
-t_data		*pars_args(int argc, char **argv, t_flags *flags);
+t_data		*pars_args(int argc, char **argv);
+
+int			index_array(int *arr, size_t size);
 
 #endif
