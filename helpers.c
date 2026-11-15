@@ -6,7 +6,7 @@
 /*   By: spuschma <spuschma@student.42vienna.com>  #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/10/28 14:53:03 by spuschma         #+#    #+#              */
-/*   Updated: 2026/11/14 21:04:26 by spuschma        ###   ########.fr        */
+/*   Updated: 2026/11/14 22:09:59 by spuschma        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,16 +58,16 @@ int	ft_strcmp(const char *s1, const char *s2)
 	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }
 
-void	exit_if(int condition, t_data *s)
+void	exit_if(int condition, t_data *data)
 {
 	if (!condition)
 		return ;
 	ft_putendl_fd("Error", 2);
-	if (s)
+	if (data)
 	{
-		free(s->a.arr);
-		free(s->b.arr);
-		free(s);
+		free(data->a.arr);
+		free(data->b.arr);
+		free(data);
 	}
 	exit(1);
 }
@@ -89,7 +89,7 @@ int	index_array(int *arr, size_t size)
 		{
 			if (j != i && arr[j] == arr[i])
 				return (free(rank), 0);
-			if (arr[j < arr[i]])
+			if (arr[j] < arr[i])
 				rank[i]++;
 		}
 	}
