@@ -6,7 +6,7 @@
 /*   By: spuschma <spuschma@student.42vienna.com>  #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/11/15 22:31:37 by spuschma         #+#    #+#              */
-/*   Updated: 2026/11/15 23:40:36 by spuschma        ###   ########.fr        */
+/*   Updated: 2026/11/15 23:45:46 by spuschma        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,8 @@ int	print_ops(t_ops ops)
 	char		*buffer;
 	const char	*name;
 
+	if (ops.len == 0)
+		return (1);
 	buffer = malloc(4 * ops.len);
 	if (!buffer)
 		return (0);
