@@ -6,7 +6,7 @@
 /*   By: spuschma <spuschma@student.42vienna.com>  #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/10/28 14:15:29 by spuschma         #+#    #+#              */
-/*   Updated: 2026/11/15 23:37:03 by spuschma        ###   ########.fr        */
+/*   Updated: 2026/11/15 23:48:04 by spuschma        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef enum e_op
 	RRA,
 	RRB,
 	RRR,
+	OP_COUNT
 }					t_op;
 
 typedef struct s_ops
