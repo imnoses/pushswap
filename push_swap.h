@@ -6,7 +6,7 @@
 /*   By: spuschma <spuschma@student.42vienna.com>  #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/10/28 14:15:29 by spuschma         #+#    #+#              */
-/*   Updated: 2026/11/15 21:37:06 by spuschma        ###   ########.fr        */
+/*   Updated: 2026/11/15 22:08:56 by spuschma        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,16 @@ char		**splitws(char const *s);
 t_data		*pars_args(int argc, char **argv);
 
 int			index_array(int *arr, size_t size);
+
+int			st_at(t_stack *s, size_t i);
+
+void		st_push_top(t_stack *s, int v);
+
+int			st_pop_top(t_stack *s);
+
+void		st_push_bot(t_stack *s, int v);
+
+int			st_pop_bot(t_stack *s);
 
 void		free_data(t_data *data);
 
