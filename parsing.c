@@ -6,17 +6,16 @@
 /*   By: spuschma <spuschma@student.42vienna.com>  #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/10/28 17:06:36 by spuschma         #+#    #+#              */
-/*   Updated: 2026/11/14 22:32:47 by spuschma        ###   ########.fr        */
+/*   Updated: 2026/11/15 21:44:06 by spuschma        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include "push_swap.h"
 #include <stddef.h>
-#include <stdio.h>
 #include <stdlib.h>
 
-static t_data	*init_stacks(int *numbers, int n, t_flags flags)
+static t_data	*init_stacks(int *numbers, int n, t_algo algo, int is_bench)
 {
 	t_data	*s;
 
@@ -24,7 +23,8 @@ static t_data	*init_stacks(int *numbers, int n, t_flags flags)
 	if (!s)
 		exit((ft_putendl_fd("Error", 2), free(numbers), 1));
 	s->n = n;
-	s->flags = flags;
+	s->algo = algo;
+	s->is_bench = is_bench;
 	s->a.size = n;
 	s->a.cap = n;
 	s->b.cap = n;
@@ -55,29 +55,36 @@ static size_t	count_dooku(int n, char **list)
 	return (result);
 }
 
-// returns the offset to the first argument after the flags
-static int	get_flags(int argc, char **argv, t_flags *flags)
+static int	check_flags(int argc, char **argv, t_algo *algo, int *is_bench)
 {
 	int	i;
 
-	*flags = 0;
+	*algo = 0;
+	*is_bench = 0;
 	i = 1;
 	while (i < 3 && i < argc && argv[i][0] == '-' && argv[i][1] == '-')
 	{
-		*flags ^= F_ADAPT * (ft_strcmp(argv[i], "--adaptive") == 0);
-		*flags ^= F_SIMPL * (ft_strcmp(argv[i], "--simple") == 0);
-		*flags ^= F_MEDIU * (ft_strcmp(argv[i], "--medium") == 0);
-		*flags ^= F_COMPL * (ft_strcmp(argv[i], "--complex") == 0);
-		*flags ^= F_BENCH * (ft_strcmp(argv[i], "--bench") == 0);
-		if (!*flags || (i > 1 && (!(*flags & (*flags - 1))
-					|| !(*flags & F_BENCH))))
+		if (!*is_bench && ft_strcmp(argv[i], "--bench") == 0)
+			*is_bench = 1;
+		else if (!*algo)
+		{
+			*algo += (ft_strcmp(argv[i], "--adaptive") == 0) * F_ADAPT;
+			*algo += (ft_strcmp(argv[i], "--simple") == 0) * F_SIMPL;
+			*algo += (ft_strcmp(argv[i], "--medium") == 0) * F_MEDIU;
+			*algo += (ft_strcmp(argv[i], "--complex") == 0) * F_COMPL;
+			if (!*algo)
+				exit((ft_putendl_fd("Error", 2), 1));
+		}
+		else
 			exit((ft_putendl_fd("Error", 2), 1));
 		i++;
 	}
+	if (!*algo)
+		*algo = F_ADAPT;
 	return (i);
 }
 
-static int	fill_array(int argc, char **argv, int *nums)
+static ssize_t	fill_array(int argc, char **argv, int *nums)
 {
 	int		err;
 	int		i;
@@ -110,19 +117,19 @@ t_data	*pars_args(int argc, char **argv)
 {
 	int		offset;
 	int		*nums;
-	size_t	size_upper_bound;
-	t_flags	flags;
-	ssize_t	actual_size;
+	ssize_t	size;
+	t_algo	algo;
+	int		is_bench;
 
-	offset = get_flags(argc, argv, &flags);
-	size_upper_bound = count_dooku(argc - offset, argv + offset);
-	nums = malloc(size_upper_bound * sizeof(int));
-	if (!nums)
+	offset = check_flags(argc, argv, &algo, &is_bench);
+	size = count_dooku(argc - offset, argv + offset);
+	nums = malloc(size * sizeof(int));
+	if (!nums && size > 0)
 		exit((ft_putendl_fd("Error", 2), 1));
-	actual_size = fill_array(argc - offset, argv + offset, nums);
-	if (actual_size == 0)
+	size = fill_array(argc - offset, argv + offset, nums);
+	if (size == 0)
 		exit((free(nums), 0));
-	if (!index_array(nums, actual_size))
+	if (size < 0 || !index_array(nums, size))
 		exit((ft_putendl_fd("Error", 2), free(nums), 1));
-	return (init_stacks(nums, actual_size, flags));
+	return (init_stacks(nums, size, algo, is_bench));
 }

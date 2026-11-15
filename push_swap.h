@@ -6,7 +6,7 @@
 /*   By: spuschma <spuschma@student.42vienna.com>  #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/10/28 14:15:29 by spuschma         #+#    #+#              */
-/*   Updated: 2026/11/15 20:46:55 by spuschma        ###   ########.fr        */
+/*   Updated: 2026/11/15 21:37:06 by spuschma        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,20 +23,20 @@ typedef struct s_stack
 	size_t	size;
 }			t_stack;
 
-typedef enum e_flags
+typedef enum e_algo
 {
-	F_ADAPT = 0b00001,
-	F_SIMPL = 0b00010,
-	F_MEDIU = 0b00100,
-	F_COMPL = 0b01000,
-	F_BENCH = 0b10000,
-}			t_flags;
+	F_ADAPT = 1,
+	F_SIMPL = 2,
+	F_MEDIU = 3,
+	F_COMPL = 4,
+}			t_algo;
 
 typedef struct s_data
 {
 	t_stack	a;
 	t_stack	b;
-	t_flags	flags;
+	t_algo	algo;
+	int		is_bench;
 	size_t	n;
 }			t_data;
 
