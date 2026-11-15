@@ -6,7 +6,7 @@
 /*   By: spuschma <spuschma@student.42vienna.com>  #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/10/28 14:53:03 by spuschma         #+#    #+#              */
-/*   Updated: 2026/11/15 20:45:04 by spuschma        ###   ########.fr        */
+/*   Updated: 2026/11/15 22:26:49 by spuschma        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void	free_data(t_data *data)
 		return ;
 	free(data->a.arr);
 	free(data->b.arr);
+	free(data->ops.buf);
 	free(data);
 }
 

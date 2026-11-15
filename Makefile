@@ -6,7 +6,7 @@
 #    By: spuschma <spuschma@student.42vienna.com>  #+#  +:+       +#+          #
 #                                                +#+#+#+#+#+   +#+             #
 #    Created: 2026/10/24 16:22:11 by spuschma         #+#    #+#               #
-#    Updated: 2026/11/15 22:08:31 by spuschma        ###   ########.fr         #
+#    Updated: 2026/11/15 23:41:42 by spuschma        ###   ########.fr         #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,8 @@ SRCS		=	push_swap.c \
 				helpers.c \
 				parsing.c \
 				splitws.c \
-				stack.c
+				stack.c \
+				ops_logic.c
 
 OBJS = $(SRCS:%.c=$(OBJ_DIR)/%.o)
 
