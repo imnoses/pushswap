@@ -6,7 +6,7 @@
 /*   By: spuschma <spuschma@student.42vienna.com>  #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/10/28 14:15:29 by spuschma         #+#    #+#              */
-/*   Updated: 2026/11/14 21:40:42 by spuschma        ###   ########.fr        */
+/*   Updated: 2026/11/15 20:46:55 by spuschma        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,7 @@ char		**splitws(char const *s);
 t_data		*pars_args(int argc, char **argv);
 
 int			index_array(int *arr, size_t size);
+
+void		free_data(t_data *data);
 
 #endif
