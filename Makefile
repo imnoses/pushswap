@@ -6,7 +6,7 @@
 #    By: spuschma <spuschma@student.42vienna.com>  #+#  +:+       +#+          #
 #                                                +#+#+#+#+#+   +#+             #
 #    Created: 2026/10/24 16:22:11 by spuschma         #+#    #+#               #
-#    Updated: 2026/11/14 21:43:07 by spuschma        ###   ########.fr         #
+#    Updated: 2026/11/15 22:08:31 by spuschma        ###   ########.fr         #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,8 @@ LIBFT = $(LIBFT_DIR)/libft.a
 SRCS		=	push_swap.c \
 				helpers.c \
 				parsing.c \
-				splitws.c
+				splitws.c \
+				stack.c
 
 OBJS = $(SRCS:%.c=$(OBJ_DIR)/%.o)
 
