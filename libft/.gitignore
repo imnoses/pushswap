@@ -1,0 +1,9 @@
+obj/
+*.o
+*.d
+*.a
+*.out
+*.swp
+*.pdf
+compile_commands.json
+.ignore
