@@ -1,5 +1,9 @@
 *.pdf
 *.o
+obj/
+*.d
+push_swap
+compile_commands.json
 *.out
 *.swp
 .ignore
