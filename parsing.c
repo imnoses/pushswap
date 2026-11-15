@@ -6,23 +6,23 @@
 /*   By: spuschma <spuschma@student.42vienna.com>  #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/10/28 17:06:36 by spuschma         #+#    #+#              */
-/*   Updated: 2026/11/14 21:16:33 by spuschma        ###   ########.fr        */
+/*   Updated: 2026/11/14 22:32:47 by spuschma        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include "push_swap.h"
+#include <stddef.h>
 #include <stdio.h>
 #include <stdlib.h>
 
 static t_data	*init_stacks(int *numbers, int n, t_flags flags)
 {
-	int		i;
 	t_data	*s;
 
 	s = ft_calloc(1, sizeof(t_data));
 	if (!s)
-		exit((ft_putendl_fd("Error", 2), 1));
+		exit((ft_putendl_fd("Error", 2), free(numbers), 1));
 	s->n = n;
 	s->flags = flags;
 	s->a.size = n;
@@ -47,7 +47,7 @@ static size_t	count_dooku(int n, char **list)
 		i = -1;
 		while (list[arg][++i])
 		{
-			if (ft_isdigit(list[arg][i]) && (!list[arg][i + 1]
+			if (!ft_isws(list[arg][i]) && (!list[arg][i + 1]
 					|| ft_isws(list[arg][i + 1])))
 				result++;
 		}
@@ -81,8 +81,8 @@ static int	fill_array(int argc, char **argv, int *nums)
 {
 	int		err;
 	int		i;
-	int		j;
-	int		k;
+	size_t	j;
+	size_t	k;
 	char	**num_strs;
 
 	err = 0;
@@ -91,6 +91,8 @@ static int	fill_array(int argc, char **argv, int *nums)
 	while (i < argc)
 	{
 		num_strs = splitws(argv[i++]);
+		if (!num_strs)
+			return (-1);
 		k = -1;
 		while (num_strs[++k])
 		{
@@ -100,26 +102,27 @@ static int	fill_array(int argc, char **argv, int *nums)
 		free(num_strs);
 	}
 	if (err)
-		return (0);
+		return (-1);
 	return (j);
 }
 
 t_data	*pars_args(int argc, char **argv)
 {
 	int		offset;
-	char	**num_strs;
 	int		*nums;
-	int		n;
+	size_t	size_upper_bound;
 	t_flags	flags;
+	ssize_t	actual_size;
 
 	offset = get_flags(argc, argv, &flags);
-	n = count_dooku(argc - offset, argv + offset);
-	nums = malloc(n * sizeof(int));
+	size_upper_bound = count_dooku(argc - offset, argv + offset);
+	nums = malloc(size_upper_bound * sizeof(int));
 	if (!nums)
 		exit((ft_putendl_fd("Error", 2), 1));
-	if (!fill_array(argc - offset, argv + offset, nums))
+	actual_size = fill_array(argc - offset, argv + offset, nums);
+	if (actual_size == 0)
+		exit((free(nums), 0));
+	if (!index_array(nums, actual_size))
 		exit((ft_putendl_fd("Error", 2), free(nums), 1));
-	if (!index_array(nums, n))
-		exit((ft_putendl_fd("Error", 2), free(nums), 1));
-	return (init_stacks(nums, n, flags));
+	return (init_stacks(nums, actual_size, flags));
 }
