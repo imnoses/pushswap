@@ -6,7 +6,7 @@
 /*   By: spuschma <spuschma@student.42vienna.com>  #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/10/28 14:15:29 by spuschma         #+#    #+#              */
-/*   Updated: 2026/11/14 21:22:50 by spuschma        ###   ########.fr        */
+/*   Updated: 2026/11/14 21:40:42 by spuschma        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ typedef struct s_stack
 	size_t	size;
 }			t_stack;
 
-typedef enum e_flag
+typedef enum e_flags
 {
 	F_ADAPT = 0b00001,
 	F_SIMPL = 0b00010,
