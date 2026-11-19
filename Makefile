@@ -6,7 +6,7 @@
 #    By: spuschma <spuschma@student.42vienna.com>  #+#  +:+       +#+          #
 #                                                +#+#+#+#+#+   +#+             #
 #    Created: 2026/10/24 16:22:11 by spuschma         #+#    #+#               #
-#    Updated: 2026/11/15 23:41:42 by spuschma        ###   ########.fr         #
+#    Updated: 2026/11/19 21:03:23 by spuschma        ###   ########.fr         #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,11 @@ SRCS		=	push_swap.c \
 				parsing.c \
 				splitws.c \
 				stack.c \
-				ops_logic.c
+				ops_logic.c \
+				stack_ops.c \
+				push_swap_ops.c \
+				push_swap_rotate_ops.c \
+				push_swap_reverse_rotate_ops.c
 
 OBJS = $(SRCS:%.c=$(OBJ_DIR)/%.o)
 
