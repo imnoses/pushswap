@@ -6,7 +6,7 @@
 /*   By: spuschma <spuschma@student.42vienna.com>  #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/10/28 14:15:29 by spuschma         #+#    #+#              */
-/*   Updated: 2026/11/15 23:48:04 by spuschma        ###   ########.fr        */
+/*   Updated: 2026/11/19 20:54:58 by spuschma        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,14 @@ int					st_pop_bot(t_stack *s);
 int					record(t_data *d, t_op op);
 
 int					print_ops(t_ops ops);
+
+void				st_swap(t_stack *s);
+
+void				st_rotate(t_stack *s);
+
+void				st_reverse_rotate(t_stack *s);
+
+void				st_push_st_to_st(t_stack *src, t_stack *dest);
 
 void				free_data(t_data *data);
 
