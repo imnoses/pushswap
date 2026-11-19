@@ -6,7 +6,7 @@
 /*   By: spuschma <spuschma@student.42vienna.com>  #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/10/28 14:15:29 by spuschma         #+#    #+#              */
-/*   Updated: 2026/11/19 20:54:58 by spuschma        ###   ########.fr        */
+/*   Updated: 2026/11/19 20:58:54 by spuschma        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,28 @@ void				st_rotate(t_stack *s);
 void				st_reverse_rotate(t_stack *s);
 
 void				st_push_st_to_st(t_stack *src, t_stack *dest);
+
+int					op_sa(t_data *d);
+
+int					op_sb(t_data *d);
+
+int					op_ss(t_data *d);
+
+int					op_pa(t_data *d);
+
+int					op_pb(t_data *d);
+
+int					op_ra(t_data *d);
+
+int					op_rb(t_data *d);
+
+int					op_rr(t_data *d);
+
+int					op_rrr(t_data *d);
+
+int					op_rrb(t_data *d);
+
+int					op_rra(t_data *d);
 
 void				free_data(t_data *data);
 
