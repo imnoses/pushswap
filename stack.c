@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "stack_internal.h"
 #include <stddef.h>
 
 int	st_at(t_stack *s, size_t i)

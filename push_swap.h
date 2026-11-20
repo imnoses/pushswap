@@ -13,15 +13,8 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
+# include "stack.h"
 # include <stddef.h>
-
-typedef struct s_stack
-{
-	int				*arr;
-	size_t			cap;
-	size_t			head;
-	size_t			size;
-}					t_stack;
 
 typedef enum e_algo
 {
@@ -79,27 +72,9 @@ t_data				*pars_args(int argc, char **argv);
 
 int					index_array(int *arr, size_t size);
 
-int					st_at(t_stack *s, size_t i);
-
-void				st_push_top(t_stack *s, int v);
-
-int					st_pop_top(t_stack *s);
-
-void				st_push_bot(t_stack *s, int v);
-
-int					st_pop_bot(t_stack *s);
-
 int					record(t_data *d, t_op op);
 
 int					print_ops(t_ops ops);
-
-void				st_swap(t_stack *s);
-
-void				st_rotate(t_stack *s);
-
-void				st_reverse_rotate(t_stack *s);
-
-void				st_push_st_to_st(t_stack *src, t_stack *dest);
 
 int					op_sa(t_data *d);
 
