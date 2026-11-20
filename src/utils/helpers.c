@@ -6,7 +6,7 @@
 /*   By: spuschma <spuschma@student.42vienna.com>  #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/10/28 14:53:03 by spuschma         #+#    #+#              */
-/*   Updated: 2026/11/15 22:26:49 by spuschma        ###   ########.fr        */
+/*   Updated: 2026/11/20 17:05:32 by spuschma        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,4 +102,30 @@ int	index_array(int *arr, size_t size)
 	while (++i < size)
 		arr[i] = rank[i];
 	return (free(rank), 1);
+}
+
+// Ops wont be copied
+t_data	*copy_data(t_data *og)
+{
+	t_data	*s;
+
+	s = ft_calloc(1, sizeof(t_data));
+	if (!s)
+		return (NULL);
+	s->n = og->n;
+	s->algo = og->algo;
+	s->is_bench = og->is_bench;
+	s->a.size = og->a.size;
+	s->b.size = og->b.size;
+	s->a.cap = og->a.cap;
+	s->b.cap = og->b.cap;
+	s->a.head = og->a.head;
+	s->b.head = og->b.head;
+	s->a.arr = malloc(s->a.cap * sizeof(int));
+	s->b.arr = malloc(s->b.cap * sizeof(int));
+	if (!s->a.arr || !s->b.arr)
+		return (free_data(s), NULL);
+	ft_memcpy(s->a.arr, og->a.arr, og->a.cap * sizeof(int));
+	ft_memcpy(s->b.arr, og->b.arr, og->b.cap * sizeof(int));
+	return (s);
 }
