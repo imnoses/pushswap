@@ -6,7 +6,7 @@
 /*   By: spuschma <spuschma@student.42vienna.com>  #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/11/15 22:31:37 by spuschma         #+#    #+#              */
-/*   Updated: 2026/11/15 23:45:46 by spuschma        ###   ########.fr        */
+/*   Updated: 2026/11/20 12:12:55 by spuschma        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static int	grow_ops(t_data *d)
 		new_cap = 2 * d->ops.cap;
 	new_buf = malloc(new_cap);
 	if (!new_buf)
-		return (0);
+		return ((d->ops.error = 1, 0));
 	if (d->ops.buf)
 		ft_memcpy(new_buf, d->ops.buf, d->ops.cap);
 	d->ops.cap = new_cap;
@@ -38,14 +38,14 @@ static int	grow_ops(t_data *d)
 
 int	record(t_data *d, t_op op)
 {
-	if (d->ops.cap == d->ops.len && !grow_ops(d))
+	if (d->ops.error || (d->ops.cap == d->ops.len && !grow_ops(d)))
 		return (0);
 	d->ops.buf[d->ops.len] = op;
 	d->ops.len++;
 	return (1);
 }
 
-const char	*op_name(t_op op)
+static const char	*op_name(t_op op)
 {
 	if (op == SA)
 		return ("sa\n");
@@ -79,6 +79,8 @@ int	print_ops(t_ops ops)
 	char		*buffer;
 	const char	*name;
 
+	if (ops.error)
+		return (0);
 	if (ops.len == 0)
 		return (1);
 	buffer = malloc(4 * ops.len);
