@@ -6,7 +6,7 @@
 /*   By: spuschma <spuschma@student.42vienna.com>  #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/10/28 14:15:29 by spuschma         #+#    #+#              */
-/*   Updated: 2026/11/19 20:58:54 by spuschma        ###   ########.fr        */
+/*   Updated: 2026/11/20 17:10:56 by spuschma        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,5 +99,7 @@ int					op_rrb(t_data *d);
 int					op_rra(t_data *d);
 
 void				free_data(t_data *data);
+
+t_data				*copy_data(t_data *og);
 
 #endif
