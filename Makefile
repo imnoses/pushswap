@@ -6,7 +6,7 @@
 #    By: spuschma <spuschma@student.42vienna.com>  #+#  +:+       +#+          #
 #                                                +#+#+#+#+#+   +#+             #
 #    Created: 2026/10/24 16:22:11 by spuschma         #+#    #+#               #
-#    Updated: 2026/11/19 21:03:23 by spuschma        ###   ########.fr         #
+#    Updated: 2026/11/20 15:40:57 by spuschma        ###   ########.fr         #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,31 +20,31 @@ AR = ar
 ARFLAGS = rcs
 RM = rm -f
 
+LIBFT_DIR	= libft
+LIBFT		= $(LIBFT_DIR)/libft.a
 
 OBJ_DIR = obj
-LIBFT_DIR = libft
-LIBFT = $(LIBFT_DIR)/libft.a
+SRC_DIR = src
 
-SRCS		=	src/main.c \
-				src/utils/helpers.c \
-				src/parsing/parsing.c \
-				src/parsing/splitws.c \
-				src/stack/stack.c \
-				src/stack/stack_ops.c \
-				src/ops/ops_logic.c \
-				src/ops/push_swap_ops.c \
-				src/ops/push_swap_rotate_ops.c \
-				src/ops/push_swap_reverse_rotate_ops.c
+SRCS		= $(SRC_DIR)/main.c \
+			  $(SRC_DIR)/ops/ops_logic.c \
+			  $(SRC_DIR)/ops/push_swap_ops.c \
+			  $(SRC_DIR)/ops/push_swap_reverse_rotate_ops.c \
+			  $(SRC_DIR)/ops/push_swap_rotate_ops.c \
+			  $(SRC_DIR)/parsing/parsing.c \
+			  $(SRC_DIR)/parsing/splitws.c \
+			  $(SRC_DIR)/stack/stack.c \
+			  $(SRC_DIR)/stack/stack_ops.c \
+			  $(SRC_DIR)/utils/helpers.c
 
 OBJS = $(SRCS:%.c=$(OBJ_DIR)/%.o)
-
 
 DEPS = $(OBJS:.o=.d)
 
 all: $(LIBFT) $(NAME)
 
-$(NAME): $(LIBFT) $(OBJS)
-	$(CC) $(OBJS) $(LIBFT) -o $(NAME)
+$(NAME): $(LIBFT) $(OBJS) $(LIBS)
+	$(CC) $(OBJS) $(LIBFT) -o $(NAME) $(LIBS)
 
 $(OBJ_DIR)/%.o: %.c Makefile
 	@mkdir -p $(dir $@)
@@ -56,12 +56,12 @@ libft:
 	$(MAKE) -C $(LIBFT_DIR)
 
 clean:
-	$(MAKE) -C $(LIBFT_DIR) clean
 	$(RM) -r $(OBJ_DIR)
+	$(MAKE) -C $(LIBFT_DIR) clean
 
 fclean: clean
-	$(MAKE) -C $(LIBFT_DIR) fclean
 	$(RM) $(NAME)
+	$(MAKE) -C $(LIBFT_DIR) fclean
 
 re:
 	$(MAKE) fclean
