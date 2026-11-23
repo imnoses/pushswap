@@ -6,32 +6,33 @@
 /*   By: spuschma <spuschma@student.42vienna.com>  #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/10/28 17:06:36 by spuschma         #+#    #+#              */
-/*   Updated: 2026/11/15 21:44:06 by spuschma        ###   ########.fr        */
+/*   Updated: 2026/11/23 17:16:01 by spuschma        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
+#include "libft.h"
 #include "push_swap.h"
 #include <stddef.h>
 #include <stdlib.h>
 
 static t_data	*init_stacks(int *numbers, int n, t_algo algo, int is_bench)
 {
-	t_data	*s;
+	t_data	*d;
 
-	s = ft_calloc(1, sizeof(t_data));
-	if (!s)
+	d = ft_calloc(1, sizeof(t_data));
+	if (!d)
 		exit((ft_putendl_fd("Error", 2), free(numbers), 1));
-	s->n = n;
-	s->algo = algo;
-	s->is_bench = is_bench;
-	s->a.size = n;
-	s->a.cap = n;
-	s->b.cap = n;
-	s->a.arr = numbers;
-	s->b.arr = malloc(n * sizeof(int));
-	exit_if(!s->a.arr || !s->b.arr || s->a.size < 1, s);
-	return (s);
+	d->n = n;
+	d->algo = algo;
+	d->is_bench = is_bench;
+	d->a.size = n;
+	d->a.cap = n;
+	d->b.cap = n;
+	d->disorder = compute_disorder(numbers, n);
+	d->a.arr = numbers;
+	d->b.arr = malloc(n * sizeof(int));
+	exit_if(!d->a.arr || !d->b.arr || d->a.size < 1, d);
+	return (d);
 }
 
 static size_t	count_dooku(int n, char **list)

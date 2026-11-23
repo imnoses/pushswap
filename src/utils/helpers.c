@@ -6,7 +6,7 @@
 /*   By: spuschma <spuschma@student.42vienna.com>  #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/10/28 14:53:03 by spuschma         #+#    #+#              */
-/*   Updated: 2026/11/20 17:05:32 by spuschma        ###   ########.fr        */
+/*   Updated: 2026/11/23 17:17:07 by spuschma        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,25 +107,26 @@ int	index_array(int *arr, size_t size)
 // Ops wont be copied
 t_data	*copy_data(t_data *og)
 {
-	t_data	*s;
+	t_data	*d;
 
-	s = ft_calloc(1, sizeof(t_data));
-	if (!s)
+	d = ft_calloc(1, sizeof(t_data));
+	if (!d)
 		return (NULL);
-	s->n = og->n;
-	s->algo = og->algo;
-	s->is_bench = og->is_bench;
-	s->a.size = og->a.size;
-	s->b.size = og->b.size;
-	s->a.cap = og->a.cap;
-	s->b.cap = og->b.cap;
-	s->a.head = og->a.head;
-	s->b.head = og->b.head;
-	s->a.arr = malloc(s->a.cap * sizeof(int));
-	s->b.arr = malloc(s->b.cap * sizeof(int));
-	if (!s->a.arr || !s->b.arr)
-		return (free_data(s), NULL);
-	ft_memcpy(s->a.arr, og->a.arr, og->a.cap * sizeof(int));
-	ft_memcpy(s->b.arr, og->b.arr, og->b.cap * sizeof(int));
-	return (s);
+	d->n = og->n;
+	d->algo = og->algo;
+	d->is_bench = og->is_bench;
+	d->a.size = og->a.size;
+	d->b.size = og->b.size;
+	d->a.cap = og->a.cap;
+	d->b.cap = og->b.cap;
+	d->a.head = og->a.head;
+	d->b.head = og->b.head;
+	d->disorder = og->disorder;
+	d->a.arr = malloc(d->a.cap * sizeof(int));
+	d->b.arr = malloc(d->b.cap * sizeof(int));
+	if (!d->a.arr || !d->b.arr)
+		return (free_data(d), NULL);
+	ft_memcpy(d->a.arr, og->a.arr, og->a.cap * sizeof(int));
+	ft_memcpy(d->b.arr, og->b.arr, og->b.cap * sizeof(int));
+	return (d);
 }
