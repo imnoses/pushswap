@@ -6,7 +6,7 @@
 #    By: spuschma <spuschma@student.42vienna.com>  #+#  +:+       +#+          #
 #                                                +#+#+#+#+#+   +#+             #
 #    Created: 2026/10/24 16:22:11 by spuschma         #+#    #+#               #
-#    Updated: 2026/11/20 15:40:57 by spuschma        ###   ########.fr         #
+#    Updated: 2026/11/23 16:52:40 by spuschma        ###   ########.fr         #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,7 @@ SRCS		= $(SRC_DIR)/main.c \
 			  $(SRC_DIR)/ops/push_swap_rotate_ops.c \
 			  $(SRC_DIR)/parsing/parsing.c \
 			  $(SRC_DIR)/parsing/splitws.c \
+			  $(SRC_DIR)/parsing/compute_disorder.c \
 			  $(SRC_DIR)/stack/stack.c \
 			  $(SRC_DIR)/stack/stack_ops.c \
 			  $(SRC_DIR)/utils/helpers.c
