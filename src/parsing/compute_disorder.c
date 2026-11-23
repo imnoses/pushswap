@@ -6,7 +6,7 @@
 /*   By: paziehen <paziehen@student.42vienna.com>  #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/11/21 20:04:31 by paziehen         #+#    #+#              */
-/*   Updated: 2026/11/23 16:31:22 by paziehen        ###   ########.fr        */
+/*   Updated: 2026/11/23 16:51:19 by spuschma        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
  * To match the output asked by the subject, we will need to put a '.' between
  * the second and third to last digit and a '%' at the end.
  */
-unsigned long	compute_disorder(int *arr, size_t size)
+unsigned int	compute_disorder(int *arr, size_t size)
 {
 	unsigned long	mistakes;
 	unsigned long	total_pairs;
@@ -44,7 +44,7 @@ unsigned long	compute_disorder(int *arr, size_t size)
 				mistakes++;
 		}
 	}
-	return ((mistakes * 10000) / total_pairs);
+	return ((unsigned int)((mistakes * 10000) / total_pairs));
 }
 //
 // int	main(void)
