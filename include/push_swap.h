@@ -46,6 +46,7 @@ typedef struct s_ops
 	unsigned char	*buf;
 	size_t			len;
 	size_t			cap;
+	int				error;
 }					t_ops;
 
 typedef struct s_data
