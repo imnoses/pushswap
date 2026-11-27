@@ -6,7 +6,7 @@
 /*   By: spuschma <spuschma@student.42vienna.com>  #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/10/28 14:53:03 by spuschma         #+#    #+#              */
-/*   Updated: 2026/11/23 17:17:07 by spuschma        ###   ########.fr        */
+/*   Updated: 2026/11/27 15:40:36 by spuschma        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ t_data	*copy_data(t_data *og)
 	if (!d)
 		return (NULL);
 	d->n = og->n;
-	d->algo = og->algo;
+	d->strategy = og->strategy;
 	d->is_bench = og->is_bench;
 	d->a.size = og->a.size;
 	d->b.size = og->b.size;

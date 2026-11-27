@@ -6,7 +6,7 @@
 /*   By: spuschma <spuschma@student.42vienna.com>  #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/10/28 14:15:29 by spuschma         #+#    #+#              */
-/*   Updated: 2026/11/23 16:54:06 by spuschma        ###   ########.fr        */
+/*   Updated: 2026/11/27 15:40:12 by spuschma        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@
 # include "stack.h"
 # include <stddef.h>
 
-typedef enum e_algo
+typedef enum e_strategy
 {
 	F_UNSELECTED = 0,
 	F_ADAPT,
 	F_SIMPL,
 	F_MEDIU,
 	F_COMPL,
-}					t_algo;
+}					t_strategy;
 
 typedef enum e_op
 {
@@ -53,7 +53,7 @@ typedef struct s_data
 {
 	t_stack			a;
 	t_stack			b;
-	t_algo			algo;
+	t_strategy		strategy;
 	int				is_bench;
 	size_t			n;
 	t_ops			ops;
