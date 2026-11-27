@@ -39,7 +39,8 @@ SRCS		= $(SRC_DIR)/main.c \
 			  $(SRC_DIR)/utils/helpers.c \
 			  $(SRC_DIR)/algos/common/helpers.c \
 			  $(SRC_DIR)/algos/selector.c \
-			  $(SRC_DIR)/algos/placeholders.c
+			  $(SRC_DIR)/algos/placeholders.c \
+			  $(SRC_DIR)/bench/bench.c
 
 OBJS = $(SRCS:%.c=$(OBJ_DIR)/%.o)
 

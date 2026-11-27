@@ -41,4 +41,6 @@ typedef struct s_algo
 
 const t_algo		*select_algo(t_data *d);
 
+void				print_bench(t_data *d, const t_algo *algo);
+
 #endif
