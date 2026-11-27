@@ -6,7 +6,7 @@
 /*   By: spuschma <spuschma@student.42vienna.com>  #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/10/28 14:15:29 by spuschma         #+#    #+#              */
-/*   Updated: 2026/11/27 15:40:12 by spuschma        ###   ########.fr        */
+/*   Updated: 2026/11/27 17:12:16 by spuschma        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ typedef struct s_data
 	unsigned int	disorder;
 }					t_data;
 
+typedef int			(*t_op_fn)(t_data *d);
+
 int					ft_isws(char c);
 
 char				status_atoi(const char *nptr, int *result);
@@ -99,6 +101,8 @@ int					op_rrr(t_data *d);
 int					op_rrb(t_data *d);
 
 int					op_rra(t_data *d);
+
+t_op_fn				get_op_fn(t_op op);
 
 void				free_data(t_data *data);
 

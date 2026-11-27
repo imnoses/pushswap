@@ -6,7 +6,7 @@
 #    By: spuschma <spuschma@student.42vienna.com>  #+#  +:+       +#+          #
 #                                                +#+#+#+#+#+   +#+             #
 #    Created: 2026/10/24 16:22:11 by spuschma         #+#    #+#               #
-#    Updated: 2026/11/27 13:50:27 by spuschma        ###   ########.fr         #
+#    Updated: 2026/11/27 17:21:35 by spuschma        ###   ########.fr         #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,9 @@ SRCS		= $(SRC_DIR)/main.c \
 			  $(SRC_DIR)/algos/common/helpers.c \
 			  $(SRC_DIR)/algos/selector.c \
 			  $(SRC_DIR)/algos/placeholders.c \
-			  $(SRC_DIR)/bench/bench.c
+			  $(SRC_DIR)/bench/bench.c \
+			  $(SRC_DIR)/ops/ops_table.c
+
 
 OBJS = $(SRCS:%.c=$(OBJ_DIR)/%.o)
 
