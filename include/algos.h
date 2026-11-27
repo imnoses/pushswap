@@ -39,4 +39,6 @@ typedef struct s_algo
 	t_algo_fn		solve;
 }					t_algo;
 
+const t_algo		*select_algo(t_data *d);
+
 #endif
