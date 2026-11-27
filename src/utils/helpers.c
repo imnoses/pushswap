@@ -6,7 +6,7 @@
 /*   By: spuschma <spuschma@student.42vienna.com>  #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/10/28 14:53:03 by spuschma         #+#    #+#              */
-/*   Updated: 2026/11/27 15:40:36 by spuschma        ###   ########.fr        */
+/*   Updated: 2026/11/27 17:40:10 by spuschma        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ void	free_data(t_data *data)
 	free(data->a.arr);
 	free(data->b.arr);
 	free(data->ops.buf);
+	free(data->initial_arr);
 	free(data);
 }
 
@@ -122,10 +123,12 @@ t_data	*copy_data(t_data *og)
 	d->a.head = og->a.head;
 	d->b.head = og->b.head;
 	d->disorder = og->disorder;
+	d->initial_arr = malloc(d->n * sizeof(int));
 	d->a.arr = malloc(d->a.cap * sizeof(int));
 	d->b.arr = malloc(d->b.cap * sizeof(int));
-	if (!d->a.arr || !d->b.arr)
+	if (!d->initial_arr || !d->a.arr || !d->b.arr)
 		return (free_data(d), NULL);
+	ft_memcpy(d->initial_arr, og->initial_arr, og->n * sizeof(int));
 	ft_memcpy(d->a.arr, og->a.arr, og->a.cap * sizeof(int));
 	ft_memcpy(d->b.arr, og->b.arr, og->b.cap * sizeof(int));
 	return (d);

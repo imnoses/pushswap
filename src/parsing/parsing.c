@@ -6,7 +6,7 @@
 /*   By: spuschma <spuschma@student.42vienna.com>  #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/10/28 17:06:36 by spuschma         #+#    #+#              */
-/*   Updated: 2026/11/27 15:43:10 by spuschma        ###   ########.fr        */
+/*   Updated: 2026/11/27 17:38:22 by spuschma        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ static t_data	*init_stacks(int *numbers, int n, t_strategy strategy,
 	d = ft_calloc(1, sizeof(t_data));
 	if (!d)
 		exit((ft_putendl_fd("Error", 2), free(numbers), 1));
+	d->initial_arr = numbers;
 	d->n = n;
 	d->strategy = strategy;
 	d->is_bench = is_bench;
@@ -30,9 +31,10 @@ static t_data	*init_stacks(int *numbers, int n, t_strategy strategy,
 	d->a.cap = n;
 	d->b.cap = n;
 	d->disorder = compute_disorder(numbers, n);
-	d->a.arr = numbers;
+	d->a.arr = malloc(n * sizeof(int));
 	d->b.arr = malloc(n * sizeof(int));
 	exit_if(!d->a.arr || !d->b.arr || d->a.size < 1, d);
+	ft_memcpy(d->a.arr, numbers, n * sizeof(int));
 	return (d);
 }
 

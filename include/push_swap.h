@@ -6,7 +6,7 @@
 /*   By: spuschma <spuschma@student.42vienna.com>  #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/10/28 14:15:29 by spuschma         #+#    #+#              */
-/*   Updated: 2026/11/27 17:12:16 by spuschma        ###   ########.fr        */
+/*   Updated: 2026/11/27 17:32:04 by spuschma        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ typedef struct s_data
 	size_t			n;
 	t_ops			ops;
 	unsigned int	disorder;
+	int				*initial_arr;
 }					t_data;
 
 typedef int			(*t_op_fn)(t_data *d);
