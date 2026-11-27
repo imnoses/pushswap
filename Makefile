@@ -37,6 +37,7 @@ SRCS		= $(SRC_DIR)/main.c \
 			  $(SRC_DIR)/stack/stack.c \
 			  $(SRC_DIR)/stack/stack_ops.c \
 			  $(SRC_DIR)/utils/helpers.c \
+			  $(SRC_DIR)/utils/data.c \
 			  $(SRC_DIR)/algos/common/helpers.c \
 			  $(SRC_DIR)/algos/selector.c \
 			  $(SRC_DIR)/algos/placeholders.c \

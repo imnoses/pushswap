@@ -6,7 +6,7 @@
 /*   By: spuschma <spuschma@student.42vienna.com>  #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/10/28 14:15:29 by spuschma         #+#    #+#              */
-/*   Updated: 2026/11/27 17:32:04 by spuschma        ###   ########.fr        */
+/*   Updated: 2026/11/27 21:23:44 by spuschma        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,5 +110,11 @@ void				free_data(t_data *data);
 t_data				*copy_data(t_data *og);
 
 unsigned int		compute_disorder(int *arr, size_t size);
+
+void				rewind_data(t_data *d);
+
+int					is_sorted(t_data *d);
+
+int					verify(t_data *d);
 
 #endif

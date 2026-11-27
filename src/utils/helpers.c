@@ -6,7 +6,7 @@
 /*   By: spuschma <spuschma@student.42vienna.com>  #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/10/28 14:53:03 by spuschma         #+#    #+#              */
-/*   Updated: 2026/11/27 17:40:10 by spuschma        ###   ########.fr        */
+/*   Updated: 2026/11/27 21:36:23 by spuschma        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,33 +103,4 @@ int	index_array(int *arr, size_t size)
 	while (++i < size)
 		arr[i] = rank[i];
 	return (free(rank), 1);
-}
-
-// Ops wont be copied
-t_data	*copy_data(t_data *og)
-{
-	t_data	*d;
-
-	d = ft_calloc(1, sizeof(t_data));
-	if (!d)
-		return (NULL);
-	d->n = og->n;
-	d->strategy = og->strategy;
-	d->is_bench = og->is_bench;
-	d->a.size = og->a.size;
-	d->b.size = og->b.size;
-	d->a.cap = og->a.cap;
-	d->b.cap = og->b.cap;
-	d->a.head = og->a.head;
-	d->b.head = og->b.head;
-	d->disorder = og->disorder;
-	d->initial_arr = malloc(d->n * sizeof(int));
-	d->a.arr = malloc(d->a.cap * sizeof(int));
-	d->b.arr = malloc(d->b.cap * sizeof(int));
-	if (!d->initial_arr || !d->a.arr || !d->b.arr)
-		return (free_data(d), NULL);
-	ft_memcpy(d->initial_arr, og->initial_arr, og->n * sizeof(int));
-	ft_memcpy(d->a.arr, og->a.arr, og->a.cap * sizeof(int));
-	ft_memcpy(d->b.arr, og->b.arr, og->b.cap * sizeof(int));
-	return (d);
 }
