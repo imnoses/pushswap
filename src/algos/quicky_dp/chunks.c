@@ -6,12 +6,14 @@
 /*   By: spuschma <spuschma@student.42vienna.com>  #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/11/28 15:14:17 by spuschma         #+#    #+#              */
-/*   Updated: 2026/11/28 16:27:54 by spuschma        ###   ########.fr        */
+/*   Updated: 2026/11/28 21:24:39 by spuschma        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "chunks.h"
 #include "locations.h"
+#include "pivots.h"
+#include "push_swap.h"
 #include <stddef.h>
 
 t_part	determine_part(t_chunk chunk, t_split split, int rank)
@@ -64,5 +66,26 @@ int	split_chunk(t_data *d, t_chunk c, t_split s, t_chunk out[3])
 		if (!run_route(d, c.loc, out[part].loc))
 			return (0);
 	}
+	return (1);
+}
+
+int	sort_chunk(t_data *d, t_chunk c)
+{
+	t_chunk	chunks[3];
+	t_split	s;
+
+	if (c.size == 0)
+		return (1);
+	if (c.size == 1)
+		return (run_route(d, c.loc, L_A_TOP));
+	s = equal_thirds_split(c);
+	if (!split_chunk(d, c, s, chunks))
+		return (0);
+	if (!sort_chunk(d, chunks[P_HIGH]))
+		return (0);
+	if (!sort_chunk(d, chunks[P_MID]))
+		return (0);
+	if (!sort_chunk(d, chunks[P_LOW]))
+		return (0);
 	return (1);
 }
