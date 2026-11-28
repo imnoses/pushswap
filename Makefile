@@ -6,7 +6,7 @@
 #    By: spuschma <spuschma@student.42vienna.com>  #+#  +:+       +#+          #
 #                                                +#+#+#+#+#+   +#+             #
 #    Created: 2026/10/24 16:22:11 by spuschma         #+#    #+#               #
-#    Updated: 2026/11/28 14:48:56 by spuschma        ###   ########.fr         #
+#    Updated: 2026/11/28 15:32:35 by spuschma        ###   ########.fr         #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,6 +43,7 @@ SRCS		= $(SRC_DIR)/main.c \
 			  $(SRC_DIR)/algos/placeholders.c \
 			  $(SRC_DIR)/algos/quicky_dp/locations.c \
 			  $(SRC_DIR)/algos/quicky_dp/routes.c \
+			  $(SRC_DIR)/algos/quicky_dp/chunks.c \
 			  $(SRC_DIR)/bench/bench.c \
 			  $(SRC_DIR)/ops/ops_table.c
 
