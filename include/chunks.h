@@ -6,7 +6,7 @@
 /*   By: spuschma <spuschma@student.42vienna.com>  #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/11/28 15:12:24 by spuschma         #+#    #+#              */
-/*   Updated: 2026/11/28 15:32:21 by spuschma        ###   ########.fr        */
+/*   Updated: 2026/11/28 16:28:17 by spuschma        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,14 @@ typedef enum e_part
 	P_HIGH,
 }				t_part;
 
-t_part			determine_part(t_chunk chunk, size_t n_low, size_t n_mid,
-					int rank);
+typedef struct s_split
+{
+	size_t		n_low;
+	size_t		n_mid;
+}				t_split;
+
+t_part			determine_part(t_chunk chunk, t_split split, int rank);
+
+int				split_chunk(t_data *d, t_chunk c, t_split s, t_chunk out[3]);
 
 #endif
