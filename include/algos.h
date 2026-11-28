@@ -6,7 +6,7 @@
 /*   By: spuschma <spuschma@student.42vienna.com>  #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/11/27 15:18:35 by spuschma         #+#    #+#              */
-/*   Updated: 2026/11/27 16:34:34 by spuschma        ###   ########.fr        */
+/*   Updated: 2026/11/28 20:53:42 by paziehen        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,11 @@ const t_algo		*select_algo(t_data *d);
 
 void				print_bench(t_data *d, const t_algo *algo);
 
+int					cost_of_rotate_to(t_stack s, int idx);
+
+int					get_position_of(t_stack s, int value);
+
+int					rotate_a_to(t_data *d, int idx);
+
+int					rotate_b_to(t_data *d, int idx);
 #endif

@@ -6,10 +6,11 @@
 /*   By: spuschma <spuschma@student.42vienna.com>  #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/11/26 09:54:58 by spuschma         #+#    #+#              */
-/*   Updated: 2026/11/26 10:32:13 by spuschma        ###   ########.fr        */
+/*   Updated: 2026/11/28 20:54:19 by paziehen        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "algos.h"
 #include "push_swap.h"
 #include "stack.h"
 #include <stddef.h>
