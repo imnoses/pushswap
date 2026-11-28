@@ -6,7 +6,7 @@
 /*   By: spuschma <spuschma@student.42vienna.com>  #+#  +:+       +#+         */
 /*                                               +#+#+#+#+#+   +#+            */
 /*   Created: 2026/11/27 15:18:35 by spuschma         #+#    #+#              */
-/*   Updated: 2026/11/27 16:34:34 by spuschma        ###   ########.fr        */
+/*   Updated: 2026/11/28 21:49:08 by spuschma        ###   ########.fr        */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,7 @@ typedef struct s_algo
 const t_algo		*select_algo(t_data *d);
 
 void				print_bench(t_data *d, const t_algo *algo);
+
+int					quicky_dp(t_data *d);
 
 #endif
